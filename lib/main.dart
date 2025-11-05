@@ -45,8 +45,9 @@ class TrangChinh extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) =>
-                        const QuocGia(),
+                    builder: (_) => const QuocGia(
+                      loai: 'monan',
+                    ),
                   ),
                 );
               },
@@ -75,24 +76,188 @@ class TrangChinh extends StatelessWidget {
 }
 
 class QuocGia extends StatelessWidget {
-  const QuocGia({super.key});
+  final String loai;
+  const QuocGia({super.key, required this.loai});
 
-  final List<Map<String, String>> quocgia =
-      const [
+  final List<Map<String, dynamic>>
+  quocgia = const [
+    {
+      'ten': 'Nhật Bản',
+      'anh': 'imgs/nhatban.png',
+      'monan': [
         {
-          'ten': 'Nhật Bản',
-          'anh': 'imgs/nhatban.png',
+          'ten': 'Sushi',
+          'anh': 'imgs/sushi.jpeg',
+          'mota':
+              'Món ăn truyền thống Nhật Bản gồm cơm trộn giấm và hải sản tươi.',
         },
         {
-          'ten': 'Việt Nam',
-          'anh': 'imgs/vietnam.jpeg',
+          'ten': 'Ramen',
+          'anh': 'imgs/ramen.jpeg',
+          'mota':
+              'Mì nước đậm đà với nước dùng ninh xương và topping đa dạng.',
         },
-        {'ten': 'Ý', 'anh': 'imgs/italy.png'},
         {
-          'ten': 'Mexico',
-          'anh': 'imgs/mexico.png',
+          'ten': 'Takoyaki',
+          'anh': 'imgs/takoyaki.jpeg',
+          'mota':
+              'Bánh bạch tuộc thơm ngon giòn bên ngoài, mềm bên trong.',
         },
-      ];
+      ],
+      'diadiem': [
+        {
+          'ten': 'Tháp Tokyo',
+          'anh': 'imgs/tokyotower.jpeg',
+          'mota':
+              'Biểu tượng hiện đại của Tokyo, điểm ngắm thành phố lý tưởng.',
+        },
+        {
+          'ten': 'Núi Phú Sĩ',
+          'anh': 'imgs/nuiphusi.jpeg',
+          'mota':
+              'Ngọn núi cao nhất Nhật Bản, biểu tượng thiêng liêng của đất nước.',
+        },
+        {
+          'ten': 'Lâu đài Osaka',
+          'anh': 'imgs/thanhosaka.jpeg',
+          'mota':
+              'Di tích lịch sử nổi tiếng với kiến trúc cổ kính và vườn hoa anh đào.',
+        },
+      ],
+    },
+    {
+      'ten': 'Việt Nam',
+      'anh': 'imgs/vietnam.jpeg',
+      'monan': [
+        {
+          'ten': 'Phở',
+          'anh': 'imgs/pho.jpeg',
+          'mota':
+              'Món ăn truyền thống Việt Nam với nước dùng thơm ngon và thịt bò mềm.',
+        },
+        {
+          'ten': 'Bánh mì',
+          'anh': 'imgs/banhmi.jpeg',
+          'mota':
+              'Món ăn đường phố nổi tiếng, kết hợp giữa bánh mì giòn và nhân đa dạng.',
+        },
+        {
+          'ten': 'Gỏi cuốn',
+          'anh': 'imgs/goicuon.jpeg',
+          'mota':
+              'Món ăn thanh mát gồm tôm, thịt, rau cuốn trong bánh tráng.',
+        },
+      ],
+      'diadiem': [
+        {
+          'ten': 'Vịnh Hạ Long',
+          'anh': 'imgs/halongbay.jpeg',
+          'mota':
+              'Kỳ quan thiên nhiên thế giới với hàng nghìn hòn đảo đá vôi.',
+        },
+        {
+          'ten': 'Phố cổ Hội An',
+          'anh': 'imgs/hoian.jpeg',
+          'mota':
+              'Di sản văn hoá thế giới nổi tiếng với đèn lồng và phố cổ ven sông.',
+        },
+        {
+          'ten': 'Sa Pa',
+          'anh': 'imgs/sapa.jpeg',
+          'mota':
+              'Thị trấn vùng cao nổi tiếng với ruộng bậc thang và khí hậu mát mẻ.',
+        },
+      ],
+    },
+    {
+      'ten': 'Ý',
+      'anh': 'imgs/italy.png',
+      'monan': [
+        {
+          'ten': 'Pizza',
+          'anh': 'imgs/pizza.jpg',
+          'mota':
+              'Món bánh nướng nổi tiếng với phô mai và cà chua, biểu tượng ẩm thực Ý.',
+        },
+        {
+          'ten': 'Pasta',
+          'anh': 'imgs/pasta.jpeg',
+          'mota':
+              'Mì Ý đa dạng với nhiều loại sốt hấp dẫn, phổ biến khắp thế giới.',
+        },
+        {
+          'ten': 'Lasagna',
+          'anh': 'imgs/lasagna.jpeg',
+          'mota':
+              'Mì nướng nhiều lớp phô mai, thịt và sốt cà chua đặc trưng.',
+        },
+      ],
+      'diadiem': [
+        {
+          'ten': 'Đấu trường Colosseum',
+          'anh': 'imgs/colosseum.jpeg',
+          'mota':
+              'Công trình La Mã cổ đại biểu tượng của thành Rome.',
+        },
+        {
+          'ten': 'Thành phố Venice',
+          'anh': 'imgs/venice.jpeg',
+          'mota':
+              'Thành phố trên mặt nước nổi tiếng với hệ thống kênh rạch và gondola.',
+        },
+        {
+          'ten': 'Nhà thờ Florence',
+          'anh': 'imgs/florence_cathedral.jpeg',
+          'mota':
+              'Tuyệt tác kiến trúc Gothic nổi tiếng ở Ý với mái vòm đỏ biểu tượng.',
+        },
+      ],
+    },
+    {
+      'ten': 'Mexico',
+      'anh': 'imgs/mexico.png',
+      'monan': [
+        {
+          'ten': 'Taco',
+          'anh': 'imgs/taco.jpeg',
+          'mota':
+              'Món ăn truyền thống Mexico với vỏ bánh ngô và nhân thịt, rau sống.',
+        },
+        {
+          'ten': 'Burrito',
+          'anh': 'imgs/burrito.jpeg',
+          'mota':
+              'Bánh cuốn lớn với nhân đậu, cơm, thịt và rau, được gói trong bánh mì ngô mềm.',
+        },
+        {
+          'ten': 'Quesadilla',
+          'anh': 'imgs/quesadilla.jpeg',
+          'mota':
+              'Bánh ngô nhân phô mai, thịt và rau, chiên vàng giòn rụm.',
+        },
+      ],
+      'diadiem': [
+        {
+          'ten': 'Kim tự tháp Chichen Itza',
+          'anh': 'imgs/chichenitza.jpeg',
+          'mota':
+              'Kỳ quan thế giới cổ đại của người Maya, nằm ở bán đảo Yucatan.',
+        },
+        {
+          'ten': 'Thành phố Cancún',
+          'anh': 'imgs/cancun.jpeg',
+          'mota':
+              'Thiên đường nghỉ dưỡng với bãi biển xanh và khu du lịch sôi động.',
+        },
+        {
+          'ten': 'Thủ đô Mexico City',
+          'anh': 'imgs/mexicocity.jpeg',
+          'mota':
+              'Trung tâm văn hóa và lịch sử của Mexico với nhiều bảo tàng nổi tiếng.',
+        },
+      ],
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
