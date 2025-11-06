@@ -58,7 +58,16 @@ class TrangChinh extends StatelessWidget {
               label: const Text(
                 'Địa điểm du lịch nổi tiếng',
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const QuocGia(
+                      loai: 'diadiem',
+                    ),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(
@@ -262,7 +271,11 @@ class QuocGia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chọn quốc gia'),
+        title: Text(
+          loai == 'monan'
+              ? 'Chọn quốc gia (Món ăn)'
+              : 'Chọn quốc gia (Du lịch)',
+        ),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(12),
@@ -275,16 +288,33 @@ class QuocGia extends StatelessWidget {
         itemCount: quocgia.length,
         itemBuilder: (context, index) {
           var qg = quocgia[index];
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(
-              16,
-            ),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => DanhSachChiTiet(
+                    tenQuocGia: qg['ten'],
+                    ds:
+                        List<
+                          Map<String, String>
+                        >.from(qg[loai]),
+                  ),
+                ),
+              );
+            },
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset(
-                  qg['anh']!,
-                  fit: BoxFit.cover,
+                ClipRRect(
+                  borderRadius:
+                      BorderRadius.circular(16),
+                  child: Image.asset(
+                    qg['anh']!,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
                 ),
                 Container(
                   color: Colors.black45,
@@ -292,6 +322,7 @@ class QuocGia extends StatelessWidget {
                     qg['ten']!,
                     style: const TextStyle(
                       fontSize: 22,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
@@ -300,6 +331,135 @@ class QuocGia extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class DanhSachChiTiet extends StatelessWidget {
+  final String tenQuocGia;
+  final List<Map<String, String>> ds;
+  const DanhSachChiTiet({
+    super.key,
+    required this.tenQuocGia,
+    required this.ds,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(tenQuocGia)),
+      body: ListView.builder(
+        itemCount: ds.length,
+        itemBuilder: (context, index) {
+          var item = ds[index];
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        ManHinhChiTiet(
+                          ten: item['ten']!,
+                          anh: item['anh']!,
+                          mota: item['mota']!,
+                        ),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Colors.orangeAccent,
+                padding:
+                    const EdgeInsets.symmetric(
+                      vertical: 16,
+                    ),
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                item['ten']!,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ManHinhChiTiet extends StatefulWidget {
+  final String ten;
+  final String anh;
+  final String mota;
+
+  const ManHinhChiTiet({
+    super.key,
+    required this.ten,
+    required this.anh,
+    required this.mota,
+  });
+
+  @override
+  State<ManHinhChiTiet> createState() =>
+      _ManHinhChiTietState();
+}
+
+class _ManHinhChiTietState
+    extends State<ManHinhChiTiet> {
+  int danhGia = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.ten)),
+      body: Center(
+        child: Column(
+          mainAxisAlignment:
+              MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(
+                20,
+              ),
+              child: Image.asset(
+                widget.anh,
+                height: 250,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              widget.ten,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+              ),
+              child: Text(
+                widget.mota,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white70,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
