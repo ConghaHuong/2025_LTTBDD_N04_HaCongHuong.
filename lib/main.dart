@@ -75,7 +75,15 @@ class TrangChinh extends StatelessWidget {
               label: const Text(
                 'Giới thiệu về nhóm',
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        const GioiThieuNhom(),
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -491,6 +499,29 @@ class _ManHinhChiTietState
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class GioiThieuNhom extends StatelessWidget {
+  const GioiThieuNhom({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Giới thiệu về nhóm'),
+      ),
+      body: const Center(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'Thành viên nhóm : Hà Công Hướng.\nMSSV: 23010558.',
+            style: TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
