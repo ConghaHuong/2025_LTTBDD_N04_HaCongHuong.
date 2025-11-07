@@ -458,6 +458,38 @@ class _ManHinhChiTietState
                 ),
               ),
             ),
+            const SizedBox(height: 20),
+            const Text(
+              'Đánh giá theo ý kiến của bạn:',
+              style: TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment:
+                  MainAxisAlignment.center,
+              children: List.generate(5, (index) {
+                return IconButton(
+                  onPressed: () {
+                    setState(() {
+                      danhGia = index + 1;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.star,
+                    color: danhGia > index
+                        ? Colors.orange
+                        : Colors.grey,
+                    size: 36,
+                  ),
+                );
+              }),
+            ),
+            Text(
+              '$danhGia / 5 sao',
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
           ],
         ),
       ),
